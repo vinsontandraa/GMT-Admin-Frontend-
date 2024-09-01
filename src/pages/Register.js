@@ -9,11 +9,12 @@ const Register = () => {
     const [role, setRole] = useState('user');
     const navigate = useNavigate ();
     const [error, setError] = useState('');
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/api/auth/register', { username, password, role });
+            await axios.post(`${apiUrl}/api/auth/register`, { username, password, role });
             navigate('/'); // Redirect to login page after successful registration
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
