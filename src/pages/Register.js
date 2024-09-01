@@ -9,7 +9,7 @@ const Register = () => {
     const [role, setRole] = useState('user');
     const navigate = useNavigate ();
     const [error, setError] = useState('');
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = 'gmt-admin-backend-production.up.railway.app';
 
     const handleRegister = async (e) => {
         e.preventDefault();
