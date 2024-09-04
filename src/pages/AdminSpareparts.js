@@ -24,6 +24,7 @@ const AdminSparepart = () => {
     });
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,7 +34,7 @@ const AdminSparepart = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/api/spareparts', formData);
+            await axios.post(`${apiUrl}/api/spareparts`, formData);
             setSuccess('Sparepart task created successfully');
             setFormData({
                 no: '',

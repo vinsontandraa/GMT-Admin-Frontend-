@@ -21,11 +21,12 @@ const SupervisorSparepart = () => {
     });
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get('/api/spareparts');
+                const response = await axios.get(`${apiUrl}/api/spareparts`);
                 setTasks(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -75,7 +76,7 @@ const SupervisorSparepart = () => {
 
     const handleApprove = async () => {
         try {
-            await axios.put(`/api/spareparts/${currentTask._id}`, { ...formData, status: 'approved' });
+            await axios.put(`${apiUrl}/api/spareparts/${currentTask._id}`, { ...formData, status: 'approved' });
             setSuccess('Task approved successfully');
             handleClose();
             setTasks(tasks.map(task => task._id === currentTask._id ? { ...task, ...formData, status: 'approved' } : task));
@@ -88,7 +89,7 @@ const SupervisorSparepart = () => {
 
     const handleReject = async () => {
         try {
-            await axios.put(`/api/spareparts/${currentTask._id}`, { status: 'rejected' });
+            await axios.put(`${apiUrl}/api/spareparts/${currentTask._id}`, { status: 'rejected' });
             setSuccess('Task rejected successfully');
             handleClose();
             setTasks(tasks.map(task => task._id === currentTask._id ? { ...task, status: 'rejected' } : task));

@@ -31,11 +31,12 @@ const GlobalCashDaily = () => {
     saldo: 0,
   });
   const [error, setError] = useState("");
+  const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await axios.get("/api/global-cash-daily");
+        const response = await axios.get(`${apiUrl}/api/global-cash-daily`);
         setEntries(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -43,7 +44,7 @@ const GlobalCashDaily = () => {
     };
     const fetchPlates = async () => {
       try {
-        const response = await axios.get("/api/plates");
+        const response = await axios.get(`${apiUrl}/api/plates`);
         setPlates(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -52,7 +53,7 @@ const GlobalCashDaily = () => {
 
     const fetchMitra = async () => {
       try {
-        const response = await axios.get("/api/mitra");
+        const response = await axios.get(`${apiUrl}/api/mitra`);
         setMitra(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -61,7 +62,7 @@ const GlobalCashDaily = () => {
 
     const fetchJenis = async () => {
       try {
-        const response = await axios.get("/api/jenis");
+        const response = await axios.get(`${apiUrl}/api/jenis`);
         setJenis(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -84,10 +85,10 @@ const GlobalCashDaily = () => {
     try {
       if (currentEntry) {
         // Update
-        await axios.put(`/api/global-cash-daily/${currentEntry._id}`, formData);
+        await axios.put(`${apiUrl}/api/global-cash-daily/${currentEntry._id}`, formData);
       } else {
         // Create
-        await axios.post("/api/global-cash-daily", formData);
+        await axios.post(`${apiUrl}api/global-cash-daily`, formData);
       }
       setShowModal(false);
       setFormData({
@@ -105,7 +106,7 @@ const GlobalCashDaily = () => {
         saldo: 0,
       });
       setCurrentEntry(null);
-      const response = await axios.get("/api/global-cash-daily");
+      const response = await axios.get(`${apiUrl}/api/global-cash-daily`);
       setEntries(response.data);
     } catch (err) {
       setError(err.response?.data?.error || "An unexpected error occurred");
@@ -121,7 +122,7 @@ const GlobalCashDaily = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
-        await axios.delete(`/api/global-cash-daily/${id}`);
+        await axios.delete(`${apiUrl}/api/global-cash-daily/${id}`);
         const response = await axios.get("/api/global-cash-daily");
         setEntries(response.data);
       } catch (err) {

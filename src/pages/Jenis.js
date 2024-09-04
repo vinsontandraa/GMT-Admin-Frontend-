@@ -8,11 +8,12 @@ const JenisPage = () => {
     const [currentJenis, setCurrentJenis] = useState(null);
     const [formData, setFormData] = useState({ name: '' });
     const [error, setError] = useState('');
+    const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
     useEffect(() => {
         const fetchJenis = async () => {
             try {
-                const response = await axios.get('/api/jenis');
+                const response = await axios.get(`${apiUrl}api/jenis`);
                 setJenis(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -31,10 +32,10 @@ const JenisPage = () => {
         try {
             if (currentJenis) {
                 // Update
-                await axios.put(`/api/jenis${currentJenis._id}`, formData);
+                await axios.put(`${apiUrl}/api/jenis${currentJenis._id}`, formData);
             } else {
                 // Create
-                await axios.post('/api/jenis', formData);
+                await axios.post(`${apiUrl}/api/jenis`, formData);
             }
             setShowModal(false);
             setFormData({ name: '' });
@@ -55,7 +56,7 @@ const JenisPage = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this type?')) {
             try {
-                await axios.delete('/api/jenis');
+                await axios.delete(`${apiUrl}/api/jenis`);
                 const response = await axios.get('/api/jenis');
                 setJenis(response.data);
             } catch (err) {

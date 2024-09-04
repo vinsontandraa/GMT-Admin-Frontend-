@@ -22,11 +22,12 @@ const DataSuratKendaraan = () => {
     noRef: "",
   });
   const [error, setError] = useState("");
+  const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await axios.get("/api/data-surat-kendaraan");
+        const response = await axios.get(`${apiUrl}/api/data-surat-kendaraan`);
         setEntries(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");

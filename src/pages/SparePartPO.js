@@ -31,11 +31,12 @@ const SparePartPO = () => {
     Keterangan: ""
   });
   const [error, setError] = useState("");
+  const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
     const fetchSparePartPOs = async () => {
       try {
-        const response = await axios.get("/api/sparepartpo");
+        const response = await axios.get(`${apiUrl}/api/sparepartpo`);
         setSparePartPOs(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -55,10 +56,10 @@ const SparePartPO = () => {
     try {
       if (currentSparePartPO) {
         // Update
-        await axios.put(`/api/sparepartpo/${currentSparePartPO._id}`, formData);
+        await axios.put(`${apiUrl}/api/sparepartpo/${currentSparePartPO._id}`, formData);
       } else {
         // Create
-        await axios.post("/api/sparepartpo", formData);
+        await axios.post(`${apiUrl}/api/sparepartpo`, formData);
       }
       setShowModal(false);
       setFormData({
@@ -79,7 +80,7 @@ const SparePartPO = () => {
         Keterangan: ""
       });
       setCurrentSparePartPO(null);
-      const response = await axios.get("/api/sparepartpo");
+      const response = await axios.get(`${apiUrl}/api/sparepartpo`);
       setSparePartPOs(response.data);
     } catch (err) {
       setError(err.response?.data?.error || "An unexpected error occurred");
@@ -95,8 +96,8 @@ const SparePartPO = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this spare part PO?")) {
       try {
-        await axios.delete(`/api/sparepartpo/${id}`);
-        const response = await axios.get("/api/sparepartpo");
+        await axios.delete(`${apiUrl}/api/sparepartpo/${id}`);
+        const response = await axios.get(`${apiUrl}/api/sparepartpo`);
         setSparePartPOs(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");

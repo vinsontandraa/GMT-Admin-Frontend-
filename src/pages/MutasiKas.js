@@ -33,11 +33,12 @@ const MutasiKasBank = () => {
     namaRekening: "",
   });
   const [error, setError] = useState("");
+  const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await axios.get("/api/mutasi-kas-bank");
+        const response = await axios.get(`${apiUrl}/api/mutasi-kas-bank`);
         setEntries(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -46,7 +47,7 @@ const MutasiKasBank = () => {
 
     const fetchPlates = async () => {
       try {
-        const response = await axios.get("/api/plates");
+        const response = await axios.get(`${apiUrl}/api/plates`);
         setPlates(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -55,7 +56,7 @@ const MutasiKasBank = () => {
 
     const fetchMitra = async () => {
       try {
-        const response = await axios.get("/api/mitra");
+        const response = await axios.get(`${apiUrl}/api/mitra`);
         setMitra(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -64,7 +65,7 @@ const MutasiKasBank = () => {
 
     const fetchJenis = async () => {
       try {
-        const response = await axios.get("/api/jenis");
+        const response = await axios.get(`${apiUrl}/api/jenis`);
         setJenis(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -86,9 +87,9 @@ const MutasiKasBank = () => {
     e.preventDefault();
     try {
       if (currentEntry) {
-        await axios.put(`/api/mutasi-kas-bank/${currentEntry._id}`, formData);
+        await axios.put(`${apiUrl}/api/mutasi-kas-bank/${currentEntry._id}`, formData);
       } else {
-        await axios.post("/api/mutasi-kas-bank", formData);
+        await axios.post(`${apiUrl}/api/mutasi-kas-bank`, formData);
       }
       setShowModal(false);
       setFormData({
@@ -108,7 +109,7 @@ const MutasiKasBank = () => {
         namaRekening: "",
       });
       setCurrentEntry(null);
-      const response = await axios.get("/api/mutasi-kas-bank");
+      const response = await axios.get(`${apiUrl}/api/mutasi-kas-bank`);
       setEntries(response.data);
     } catch (err) {
       setError(err.response?.data?.error || "An unexpected error occurred");
@@ -124,7 +125,7 @@ const MutasiKasBank = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
-        await axios.delete(`/api/mutasi-kas-bank/${id}`);
+        await axios.delete(`${apiUrl}/api/mutasi-kas-bank/${id}`);
         const response = await axios.get("/api/mutasi-kas-bank");
         setEntries(response.data);
       } catch (err) {

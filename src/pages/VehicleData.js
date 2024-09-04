@@ -40,11 +40,12 @@ const VehicleData = () => {
     
   });
   const [error, setError] = useState("");
+  const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await axios.get("/api/vehicle-data");
+        const response = await axios.get(`${apiUrl}/api/vehicle-data`);
         setEntries(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -52,7 +53,7 @@ const VehicleData = () => {
     };
       const fetchPlates = async () => {
         try {
-          const response = await axios.get("/api/plates");
+          const response = await axios.get(`${apiUrl}/api/plates`);
           setPlates(response.data);
         } catch (err) {
           setError(err.response?.data?.error || "An unexpected error occurred");
@@ -73,10 +74,10 @@ const VehicleData = () => {
     try {
       if (currentEntry) {
         // Update
-        await axios.put(`/api/vehicle-data/${currentEntry._id}`, formData);
+        await axios.put(`${apiUrl}/api/vehicle-data/${currentEntry._id}`, formData);
       } else {
         // Create
-        await axios.post("/api/vehicle-data", formData);
+        await axios.post(`${apiUrl}/api/vehicle-data`, formData);
       }
       setShowModal(false);
       setFormData({
@@ -101,7 +102,7 @@ const VehicleData = () => {
         keteranganPenjualan: "",
       });
       setCurrentEntry(null);
-      const response = await axios.get("/api/vehicle-data");
+      const response = await axios.get(`${apiUrl}/api/vehicle-data`);
       setEntries(response.data);
     } catch (err) {
       setError(err.response?.data?.error || "An unexpected error occurred");
@@ -117,7 +118,7 @@ const VehicleData = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
-        await axios.delete(`/api/vehicle-data/${id}`);
+        await axios.delete(`${apiUrl}/api/vehicle-data/${id}`);
         const response = await axios.get("/api/vehicle-data");
         setEntries(response.data);
       } catch (err) {

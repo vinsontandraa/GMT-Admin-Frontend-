@@ -8,11 +8,12 @@ const Plates = () => {
     const [currentPlate, setCurrentPlate] = useState(null);
     const [formData, setFormData] = useState({ noPlat: '' });
     const [error, setError] = useState('');
+    const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
     useEffect(() => {
         const fetchPlates = async () => {
             try {
-                const response = await axios.get('/api/plates');
+                const response = await axios.get(`${apiUrl}/api/plates`);
                 setPlates(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -31,15 +32,15 @@ const Plates = () => {
         try {
             if (currentPlate) {
                 // Update
-                await axios.put(`/api/plates/${currentPlate._id}`, formData);
+                await axios.put(`${apiUrl}/api/plates/${currentPlate._id}`, formData);
             } else {
                 // Create
-                await axios.post('/api/plates', formData);
+                await axios.post(`${apiUrl}/api/plates`, formData);
             }
             setShowModal(false);
             setFormData({ noPlat: '' });
             setCurrentPlate(null);
-            const response = await axios.get('/api/plates');
+            const response = await axios.get(`${apiUrl}/api/plates`);
             setPlates(response.data);
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -55,8 +56,8 @@ const Plates = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this plate?')) {
             try {
-                await axios.delete(`/api/plates/${id}`);
-                const response = await axios.get('/api/plates');
+                await axios.delete(`${apiUrl}/api/plates/${id}`);
+                const response = await axios.get(`${apiUrl}/api/plates`);
                 setPlates(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');

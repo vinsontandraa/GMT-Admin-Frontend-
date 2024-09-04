@@ -7,12 +7,13 @@ const Dashboard = () => {
     const [users, setUsers] = useState([]);
     const [role, setRole] = useState('');
     const [error, setError] = useState('');
+    const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('/api/users', {
+                const response = await axios.get(`${apiUrl}/api/users`, {
                     headers: { Authorization: token }
                 });
                 setUsers(response.data);

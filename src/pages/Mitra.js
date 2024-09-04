@@ -8,11 +8,12 @@ const MitraPage = () => {
     const [currentMitra, setCurrentMitra] = useState(null);
     const [formData, setFormData] = useState({ nama: '', type: '', no: '' });
     const [error, setError] = useState('');
+    const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
     useEffect(() => {
         const fetchMitras = async () => {
             try {
-                const response = await axios.get('/api/mitra');
+                const response = await axios.get(`${apiUrl}/api/mitra`);
                 setMitras(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -31,10 +32,10 @@ const MitraPage = () => {
         try {
             if (currentMitra) {
                 // Update
-                await axios.put(`/api/mitra/${currentMitra._id}`, formData);
+                await axios.put(`${apiUrl}/api/mitra/${currentMitra._id}`, formData);
             } else {
                 // Create
-                await axios.post('/api/mitra', formData);
+                await axios.post(`${apiUrl}/api/mitra`, formData);
             }
             setShowModal(false);
             setFormData({ nama: '', type: '', no: '' });
@@ -55,7 +56,7 @@ const MitraPage = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this mitra?')) {
             try {
-                await axios.delete('/api/mitra');
+                await axios.delete(`${apiUrl}/api/mitra`);
                 const response = await axios.get('/api/mitra');
                 setMitras(response.data);
             } catch (err) {

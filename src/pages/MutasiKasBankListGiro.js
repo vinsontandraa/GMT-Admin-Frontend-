@@ -14,11 +14,12 @@ const MutasiKasBankListGiro = () => {
     debit: 0,
   });
   const [error, setError] = useState("");
+  const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await axios.get("/api/mutasi-kas-bank-list-giro");
+        const response = await axios.get(`${apiUrl}/api/mutasi-kas-bank-list-giro`);
         setEntries(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
@@ -37,10 +38,10 @@ const MutasiKasBankListGiro = () => {
     try {
       if (currentEntry) {
         // Update
-        await axios.put(`/api/mutasi-kas-bank-list-giro/${currentEntry._id}`, formData);
+        await axios.put(`${apiUrl}/api/mutasi-kas-bank-list-giro/${currentEntry._id}`, formData);
       } else {
         // Create
-        await axios.post("/api/mutasi-kas-bank-list-giro", formData);
+        await axios.post(`${apiUrl}/api/mutasi-kas-bank-list-giro`, formData);
       }
       setShowModal(false);
       setFormData({
@@ -51,7 +52,7 @@ const MutasiKasBankListGiro = () => {
         debit: 0,
       });
       setCurrentEntry(null);
-      const response = await axios.get("/api/mutasi-kas-bank-list-giro");
+      const response = await axios.get(`${apiUrl}/api/mutasi-kas-bank-list-giro`);
       setEntries(response.data);
     } catch (err) {
       setError(err.response?.data?.error || "An unexpected error occurred");
@@ -67,8 +68,8 @@ const MutasiKasBankListGiro = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
-        await axios.delete(`/api/mutasi-kas-bank-list-giro/${id}`);
-        const response = await axios.get("/api/mutasi-kas-bank-list-giro");
+        await axios.delete(`${apiUrl}/api/mutasi-kas-bank-list-giro/${id}`);
+        const response = await axios.get(`${apiUrl}api/mutasi-kas-bank-list-giro`);
         setEntries(response.data);
       } catch (err) {
         setError(err.response?.data?.error || "An unexpected error occurred");
