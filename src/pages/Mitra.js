@@ -40,7 +40,7 @@ const MitraPage = () => {
             setShowModal(false);
             setFormData({ nama: '', type: '', no: '' });
             setCurrentMitra(null);
-            const response = await axios.get('/api/mitra');
+            const response = await axios.get(`${apiUrl}api/mitra`);
             setMitras(response.data);
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -57,7 +57,7 @@ const MitraPage = () => {
         if (window.confirm('Are you sure you want to delete this mitra?')) {
             try {
                 await axios.delete(`${apiUrl}/api/mitra`);
-                const response = await axios.get('/api/mitra');
+                const response = await axios.get(`${apiUrl}/api/mitra`);
                 setMitras(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
