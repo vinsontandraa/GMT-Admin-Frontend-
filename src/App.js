@@ -17,6 +17,8 @@ import AdminSparepart from './pages/AdminSpareparts';
 import SupervisorSparepart from './pages/SupervisorSparepart';
 import SparePartPO from "./pages/SparePartPO";
 import SparepartTasklist from './pages/SparepartTasklist';
+import MekanikPage from "./pages/Mekanik";
+import FormPOList from './pages/FormPOList';
 
 const App = () => (
   <Router>
@@ -41,7 +43,8 @@ const App = () => (
       {/* <Route path="/supervisor-sparepart" element={<SupervisorSparepart />} /> */}
       <Route path="/task-list/supervisor" element={<SupervisorSparepart />} />
       <Route path="/task-list/admin" element={<SparepartTasklist />} />
-
+      <Route path="/mekanik" element={<MekanikPage />} />
+      <Route path="/form-po" element={<FormPOList />} />
     </Routes>
   </Router>
 );

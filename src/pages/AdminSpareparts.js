@@ -63,7 +63,7 @@ const AdminSparepart = () => {
 
     return (
         <Container>
-            <h2>Admin: Create Sparepart Task</h2>
+            <h2>Form Permintaan Barang</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">{success}</Alert>}
             <Form onSubmit={handleSubmit}>

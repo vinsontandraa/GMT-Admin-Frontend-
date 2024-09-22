@@ -72,10 +72,10 @@ const NavigationBar = () => {
                 <>
                  <NavDropdown title="Sparepart" id="sparepart-dropdown">
                 <NavDropdown.Item as={Link} to="/task-list/admin">
-                    Sparepart Task List
+                Form Permintaan Barang Task List
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/admin-sparepart">
-                Add Sparepart
+                Form Permintaan Barang
                 </NavDropdown.Item>
 
               </NavDropdown>
