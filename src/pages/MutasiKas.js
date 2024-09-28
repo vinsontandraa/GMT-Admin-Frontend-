@@ -134,7 +134,7 @@ const MutasiKasBank = () => {
     }
   };
 
-  const isEntries = entries == 0;
+  const isEntries = entries === 0;
 
   return (
     <Container className="mt-4">

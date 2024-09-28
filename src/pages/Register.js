@@ -58,11 +58,12 @@ const Register = () => {
                                         value={role}
                                         onChange={(e) => setRole(e.target.value)}
                                     >
-                                        <option value="user">User</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="manager">Manager</option>
-                                        <option value="supervisor">Supervisor</option>
-
+                                        <option value="admin1">Admin 1</option>
+                                        <option value="admin2">Admin 2</option>
+                                        <option value="admin3">Admin 3</option>
+                                        <option value="admin4">Admin 4</option>
+                                        <option value="admin5">Admin 5</option>
+                                        <option value="admin6">Admin 6</option>
                                     </Form.Control>
                                 </Form.Group>
 
