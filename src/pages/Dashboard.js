@@ -30,7 +30,7 @@ const Dashboard = () => {
     const isManager = role === 'manager';
 
     return (
-        <Container fluid className="mt-4">
+        <Container fluid className="mt-4 w-75">
         <Row>
             <Col>
                 <h2 className="mb-4">Dashboard</h2>
