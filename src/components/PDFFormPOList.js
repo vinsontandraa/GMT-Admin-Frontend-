@@ -190,6 +190,160 @@ const PDFFormPOList = () => (
                 </View>
             </View>
         </Page>
+        <Page size="A4" style={styles.page}>
+            <View style={styles.header}>
+                <Text>P/O : (No. PO)</Text>
+            </View>
+
+            <View style={styles.body}>
+                <Text>Tanggal : </Text>
+                <Text>Kepada Yth : (Supplier)</Text>
+                <Text>Dengan Hormat,</Text>
+                <Text>Dengan ini kami sampaikan agar saudara/i memberikan barang-barang seperti yang tersebut dibawah ini.</Text>
+                {/* ini buat table data */}
+                <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>No.</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Produk</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Tipe</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Satuan</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>qty</Text></View>
+                            <View style={styles.parentCol}>
+                                <View style={styles.tableParentRow}>
+                                    <Text style={styles.parentCell}>Ketersediaan</Text>
+                                </View>
+                                <View style={styles.tableChildRow}>
+                                    <View style={styles.childCol1}><Text style={styles.parentCell}>Merek</Text></View>
+                                    <View style={styles.childCol2}><Text style={styles.parentCell}>qty</Text></View>
+                                    <View style={styles.childCol3}><Text style={styles.parentCell}>Keterangan</Text></View>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+
+                    {/* Table Row 1 */}
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                    </View>
+
+                    {/* Table Row 2 */}
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                    </View>
+                </View>
+
+                <View style={styles.signatures}>
+                    <View style={styles.signature}>
+                        <Text>Ditinjau</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                    <View style={styles.signature}>
+                        <Text>Disetujui</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                    <View style={styles.signature}>
+                        <Text>Admin log</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                    <View style={styles.signature}>
+                        <Text>Supplier</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                </View>
+            </View>
+        </Page>
+        <Page size="A4" style={styles.page}>
+            <View style={styles.header}>
+                <Text>P/O : (No. PO)</Text>
+            </View>
+
+            <View style={styles.body}>
+                <Text>Tanggal : </Text>
+                <Text>Kepada Yth : (Supplier)</Text>
+                <Text>Dengan Hormat,</Text>
+                <Text>Dengan ini kami sampaikan agar saudara/i memberikan barang-barang seperti yang tersebut dibawah ini.</Text>
+                {/* ini buat table data */}
+                <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>No.</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Produk</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Tipe</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>Satuan</Text></View>
+                            <View style={styles.tableCol}><Text style={styles.tableCell}>qty</Text></View>
+                            <View style={styles.parentCol}>
+                                <View style={styles.tableParentRow}>
+                                    <Text style={styles.parentCell}>Ketersediaan</Text>
+                                </View>
+                                <View style={styles.tableChildRow}>
+                                    <View style={styles.childCol1}><Text style={styles.parentCell}>Merek</Text></View>
+                                    <View style={styles.childCol2}><Text style={styles.parentCell}>qty</Text></View>
+                                    <View style={styles.childCol3}><Text style={styles.parentCell}>Keterangan</Text></View>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+
+                    {/* Table Row 1 */}
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                    </View>
+
+                    {/* Table Row 2 */}
+                    <View style={styles.tableRow}>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                        <View style={styles.tableCol}><Text style={styles.tableCell}></Text></View>
+                    </View>
+                </View>
+
+                <View style={styles.signatures}>
+                    <View style={styles.signature}>
+                        <Text>Ditinjau</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                    <View style={styles.signature}>
+                        <Text>Disetujui</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                    <View style={styles.signature}>
+                        <Text>Admin log</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                    <View style={styles.signature}>
+                        <Text>Supplier</Text>
+                        <Text>(ttd - nama)</Text>
+                    </View>
+                </View>
+            </View>
+        </Page>
     </Document>
 );
 
