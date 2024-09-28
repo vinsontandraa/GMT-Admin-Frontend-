@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import NavigationBar from "./components/Navbar";
 import GlobalCashDaily from './pages/GlobalCashDaily'; // Import the new component
 import Plates from './pages/Plates'; // Import the new component
-import MitraPage from './pages/Mitra';
+import Mitra from './pages/Mitra';
 import Jenis from './pages/Jenis';
 import VehicleData from './pages/VehicleData';
 import MutasiKas from './pages/MutasiKas';
@@ -30,7 +30,7 @@ const App = () => (
       <Route path="/register" element={<Register />} />
       <Route path="/global-cash-daily" element={<GlobalCashDaily/>} /> {/* Add this route */}
       <Route path="/plates" element={<Plates/>} /> {/* Add this route */}
-      <Route path="/mitra" element={<MitraPage />} />
+      <Route path="/mitra" element={<Mitra />} />
       <Route path="/jenis" element={<Jenis />} />
       <Route path="/vehicle-data" element={<VehicleData />} />
       <Route path="/mutasiKas" element={<MutasiKas />} />

@@ -40,7 +40,7 @@ const NavigationBar = () => {
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
                   </Nav.Link>
-                  {role === "manager" && (
+                  {role === "admin1" && (
                     <NavDropdown
                       title="Kas Harian Global"
                       id="kas-harian-global-dropdown"
@@ -51,6 +51,7 @@ const NavigationBar = () => {
                       {/* Add more items if needed */}
                     </NavDropdown>
                   )}
+                   {role === "admin5" && (
                   <NavDropdown title="Mutasi Kas" id="mutasi-kas-dropdown">
                     <NavDropdown.Item as={Link} to="/mutasiKas">
                       Mutasi Kas Piutang
@@ -62,6 +63,8 @@ const NavigationBar = () => {
                       Mutasi Kas Bank Giro
                     </NavDropdown.Item>
                   </NavDropdown>
+                  )}
+                  {role === "admin3" && (
                   <NavDropdown title="Data Kendaraan" id="data-kendaraan-dropdown">
                     <NavDropdown.Item as={Link} to="/vehicle-data">
                       Data Kendaraan
@@ -70,6 +73,7 @@ const NavigationBar = () => {
                       Data Surat Kendaraan
                     </NavDropdown.Item>
                   </NavDropdown>
+                  )}
                   {role === "admin" && (
                     <>
                     <NavDropdown title="Sparepart" id="sparepart-dropdown">
