@@ -42,17 +42,17 @@ const DataMitra = ({ existingMitra, onFormSubmit }) => {
     e.preventDefault();
     const formDataToSend = new FormData();
   
-    // // Append other fields
-    // for (const key in formData) {
-    //   if (key === 'images') {
-    //     // Append multiple files
-    //     for (let i = 0; i < formData.images.length; i++) {
-    //       formDataToSend.append('images', formData.images[i]);
-    //     }
-    //   } else {
-    //     formDataToSend.append(key, formData[key]);
-    //   }
-    // }
+    // Append other fields
+    for (const key in formData) {
+      if (key === 'images') {
+        // Append multiple files
+        for (let i = 0; i < formData.images.length; i++) {
+          formDataToSend.append('images', formData.images[i]);
+        }
+      } else {
+        formDataToSend.append(key, formData[key]);
+      }
+    }
   
     try {
       await axios.post('https://gmt-admin-backend-production.up.railway.app/api/mitra/mitras', formDataToSend, {
