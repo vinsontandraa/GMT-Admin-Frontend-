@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Table, Button, Modal, Form, Alert } from 'react-bootstrap';
 
-const DataMitraForm = () => {
+const DataMitra = () => {
   const [mitras, setMitras] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentMitra, setCurrentMitra] = useState(null);
@@ -247,4 +247,4 @@ const DataMitraForm = () => {
   );
 };
 
-export default DataMitraForm;
+export default DataMitra;
