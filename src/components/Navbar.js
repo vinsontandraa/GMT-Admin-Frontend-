@@ -40,21 +40,18 @@ const NavigationBar = () => {
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
                   </Nav.Link>
-                  {role === "admin1" && (
-                    <NavDropdown
-                      title="Kas Harian Global"
-                      id="kas-harian-global-dropdown"
-                    >
-                      <NavDropdown.Item as={Link} to="/global-cash-daily">
-                        Kas Harian Global
-                      </NavDropdown.Item>
-                      {/* Add more items if needed */}
-                    </NavDropdown>
-                  )}
-                   {role === "admin5" && (
+                  <NavDropdown
+                    title="Kas Harian Global"
+                    id="kas-harian-global-dropdown"
+                  >
+                    <NavDropdown.Item as={Link} to="/global-cash-daily">
+                      Kas Harian Global
+                    </NavDropdown.Item>
+                  </NavDropdown>
+
                   <NavDropdown title="Mutasi Kas" id="mutasi-kas-dropdown">
                     <NavDropdown.Item as={Link} to="/mutasiKas">
-                      Mutasi Kas Piutang
+                      Mutasi Kas
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/mutasi-kas-bank-piutang">
                       Mutasi Kas Bank Piutang
@@ -63,37 +60,51 @@ const NavigationBar = () => {
                       Mutasi Kas Bank Giro
                     </NavDropdown.Item>
                   </NavDropdown>
-                  )}
-                  {role === "admin3" && (
-                  <NavDropdown title="Data Kendaraan" id="data-kendaraan-dropdown">
+
+                  <NavDropdown title="Berkas" id="data-kendaraan-dropdown">
                     <NavDropdown.Item as={Link} to="/vehicle-data">
                       Data Kendaraan
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
                       Data Surat Kendaraan
                     </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                      Supir
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                      Operator
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                      Anggota
+                    </NavDropdown.Item>
                   </NavDropdown>
-                  )}
-                  {role === "admin" && (
-                    <>
-                    <NavDropdown title="Sparepart" id="sparepart-dropdown">
-                    <NavDropdown.Item as={Link} to="/task-list/admin">
-                      Form Permintaan Barang Task List
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/admin-sparepart">
-                      Form Permintaan Barang
-                    </NavDropdown.Item>
 
-                  </NavDropdown>
-                    </>
-                  )}
-                  {role === "supervisor" && (
-                    <>
-                      <Nav.Link as={Link} to="/task-list/supervisor">
-                        Supervisor Task List
-                      </Nav.Link>
-                    </>
-                  )}
+                  <>
+                    <NavDropdown title="Sparepart" id="sparepart-dropdown">
+
+
+                      <NavDropdown.Item as={Link} to="/admin-sparepart">
+                        Form Permintaan Barang
+                      </NavDropdown.Item>
+                      <>
+                        <NavDropdown.Item as={Link} to="/task-list/supervisor">
+                          Sparepart spv Task List
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/task-list/admin">
+                          Sparepart operator Task List
+                        </NavDropdown.Item>
+                      </>
+                      <NavDropdown.Item as={Link} to="/form-po">
+                        Form PO Pembelian Barang
+                      </NavDropdown.Item>
+
+                    </NavDropdown>
+                  </>
+
+
+
+
+
                 </div>
                 <div>
                   <Nav.Link onClick={handleLogout} className="border-start px-4">

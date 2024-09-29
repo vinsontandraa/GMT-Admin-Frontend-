@@ -1,10 +1,10 @@
-// src/pages/SparepartTasklist.js
+// src/pages/FormPermintaanBarangTasklist.js
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Table, Button, Alert, Modal, Form } from 'react-bootstrap';
 
-const SparepartTasklist = ({ role }) => {
+const FormPermintaanBarangTasklist = ({ role }) => {
     const [tasks, setTasks] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [currentTask, setCurrentTask] = useState(null);
@@ -27,7 +27,7 @@ const SparepartTasklist = ({ role }) => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get(`${apiUrl}/api/spareparts`);
+                const response = await axios.get(`${apiUrl}/api/FormPermintaanBarangs`);
                 setTasks(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -77,7 +77,7 @@ const SparepartTasklist = ({ role }) => {
 
     const handleApprove = async () => {
         try {
-            await axios.put(`${apiUrl}/api/spareparts/${currentTask._id}`, { ...formData, status: 'approved' });
+            await axios.put(`${apiUrl}/api/FormPermintaanBarangs/${currentTask._id}`, { ...formData, status: 'approved' });
             setSuccess('Task approved successfully');
             handleClose();
             setTasks(tasks.map(task => task._id === currentTask._id ? { ...task, ...formData, status: 'approved' } : task));
@@ -90,7 +90,7 @@ const SparepartTasklist = ({ role }) => {
 
     const handleReject = async () => {
         try {
-            await axios.put(`${apiUrl}/api/spareparts/${currentTask._id}`, { status: 'rejected' });
+            await axios.put(`${apiUrl}/api/FormPermintaanBarangs/${currentTask._id}`, { status: 'rejected' });
             setSuccess('Task rejected successfully');
             handleClose();
             setTasks(tasks.map(task => task._id === currentTask._id ? { ...task, status: 'rejected' } : task));
@@ -191,4 +191,4 @@ const SparepartTasklist = ({ role }) => {
     );
 };
 
-export default SparepartTasklist;
+export default FormPermintaanBarangTasklist;
