@@ -13,13 +13,14 @@ import MutasiKas from './pages/MutasiKas';
 import MutasiKasBankPiutang from "./pages/MutasiKasBankPiutang";
 import MutasiKasBankListGiro from "./pages/MutasiKasBankListGiro";
 import DataSuratKendaraan from "./pages/DataSuratKendaraan";
-import AdminSparepart from './pages/AdminSpareparts';
-import SupervisorSparepart from './pages/SupervisorSparepart';
+import AdminFormPermintaanBarang from './pages/AdminFormPermintaanBarang';
+import SupervisorFormPermintaanBarang from './pages/SupervisorFormPermintaanBarang';
 import SparePartPO from "./pages/SparePartPO";
-import SparepartTasklist from './pages/SparepartTasklist';
+import FormPermintaanBarangTasklist from './pages/FormPermintaanBarangTasklist';
 import MekanikPage from "./pages/Mekanik";
 import FormPOList from './pages/FormPOList';
 import LakalantasPage from "./pages/Lakalantas";
+import Sparepart from './pages/SparePart';
 
 const App = () => (
   <Router>
@@ -38,15 +39,16 @@ const App = () => (
       <Route path="/mutasi-kas-bank-piutang" element={<MutasiKasBankPiutang/>} />
       <Route path="/mutasi-kas-bank-giro" element={<MutasiKasBankListGiro/>} />
       <Route path="/data-surat-kendaraan" element={<DataSuratKendaraan/>} />
-      {/* <Route path="/sparepart" element={<SparePart/>} /> */}
       <Route path="/sparepart-po" element={<SparePartPO/>} />
-      <Route path="/admin-sparepart" element={<AdminSparepart />} />
+      <Route path="/admin-sparepart" element={<AdminFormPermintaanBarang />} />
       {/* <Route path="/supervisor-sparepart" element={<SupervisorSparepart />} /> */}
-      <Route path="/task-list/supervisor" element={<SupervisorSparepart />} />
-      <Route path="/task-list/admin" element={<SparepartTasklist />} />
+      <Route path="/task-list/supervisor" element={<SupervisorFormPermintaanBarang />} />
+      <Route path="/task-list/admin" element={<FormPermintaanBarangTasklist />} />
       <Route path="/mekanik" element={<MekanikPage />} />
       <Route path="/form-po" element={<FormPOList />} />
       <Route path="/lakalantas" element={<LakalantasPage />} />
+      <Route path="/sparepart" element={<Sparepart />} />
+
     </Routes>
   </Router>
 );

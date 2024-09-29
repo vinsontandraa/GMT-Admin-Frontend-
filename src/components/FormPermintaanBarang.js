@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Table, Button, Modal, Form, Alert } from 'react-bootstrap';
 
-const Sparepart = () => {
+const FormPermintaanBarang = () => {
     const [entries, setEntries] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [currentEntry, setCurrentEntry] = useState(null);
@@ -39,7 +39,7 @@ const Sparepart = () => {
     useEffect(() => {
         const fetchEntries = async () => {
             try {
-                const response = await axios.get('/api/spareparts');
+                const response = await axios.get('/api/FormPermintaanBarangs');
                 setEntries(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -58,10 +58,10 @@ const Sparepart = () => {
         try {
             if (currentEntry) {
                 // Update
-                await axios.put(`/api/spareparts/${currentEntry._id}`, formData);
+                await axios.put(`/api/FormPermintaanBarangs/${currentEntry._id}`, formData);
             } else {
                 // Create
-                await axios.post('/api/spareparts', formData);
+                await axios.post('/api/FormPermintaanBarangs', formData);
             }
             setShowModal(false);
             setFormData({
@@ -92,7 +92,7 @@ const Sparepart = () => {
                 noPO: '',
             });
             setCurrentEntry(null);
-            const response = await axios.get('/api/spareparts');
+            const response = await axios.get('/api/FormPermintaanBarangs');
             setEntries(response.data);
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -108,8 +108,8 @@ const Sparepart = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this entry?')) {
             try {
-                await axios.delete(`/api/spareparts/${id}`);
-                const response = await axios.get('/api/spareparts');
+                await axios.delete(`/api/FormPermintaanBarangs/${id}`);
+                const response = await axios.get('/api/FormPermintaanBarangs');
                 setEntries(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -120,8 +120,8 @@ const Sparepart = () => {
     const handleApprove = async (id) => {
         if (window.confirm('Are you sure you want to approve this task?')) {
             try {
-                await axios.post(`/api/spareparts/${id}/approve`, { approved: true, ...formData });
-                const response = await axios.get('/api/spareparts');
+                await axios.post(`/api/FormPermintaanBarangs/${id}/approve`, { approved: true, ...formData });
+                const response = await axios.get('/api/FormPermintaanBarangs');
                 setEntries(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -193,4 +193,4 @@ const Sparepart = () => {
     );
 };
 
-export default Sparepart;
+export default FormPermintaanBarang;
