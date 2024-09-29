@@ -162,7 +162,7 @@ const SparePartPO = () => {
                 <Button
                   variant="danger"
                   onClick={() => handleDelete(sparePartPO._id)}
-                  className="ml-2"
+                  className="mx-2"
                 >
                   Delete
                 </Button>

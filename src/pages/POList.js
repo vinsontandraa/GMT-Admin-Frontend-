@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Button, Modal, Form, Alert } from 'react-bootstrap';
+// import { PDFDownloadLink } from '@react-pdf/renderer';
+// import PDFFormPOList from '../components/PDFFormPOList';
 
 const FormPO = () => {
   const [formPOs, setFormPOs] = useState([]);
@@ -77,6 +79,7 @@ const FormPO = () => {
             <th>Merek</th>
             <th>Ketersediaan</th>
             <th>Keterangan</th>
+            {/* <th></th> */}
           </tr>
         </thead>
         <tbody>
@@ -96,6 +99,15 @@ const FormPO = () => {
               <td>{po.merek}</td>
               <td>{po.qtyKetersediaan}</td>
               <td>{po.keterangan}</td>
+              {/* <td>
+                <PDFDownloadLink document={<PDFFormPOList data={po} />} fileName="Form PO Pembelian Barang">
+                    <Button
+                    variant="danger"
+                    >
+                    PDF
+                    </Button>
+                </PDFDownloadLink>
+              </td> */}
             </tr>
           ))}
         </tbody>

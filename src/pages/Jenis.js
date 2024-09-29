@@ -85,7 +85,7 @@ const JenisPage = () => {
                             <td>{item.name}</td>
                             <td>
                                 <Button variant="warning" onClick={() => handleEdit(item)}>Edit</Button>
-                                <Button variant="danger" onClick={() => handleDelete(item._id)} className="ml-2">Delete</Button>
+                                <Button variant="danger" onClick={() => handleDelete(item._id)} className="mx-2">Delete</Button>
                             </td>
                         </tr>
                     ))}

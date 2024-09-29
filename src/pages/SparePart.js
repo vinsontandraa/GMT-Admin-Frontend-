@@ -198,7 +198,7 @@ const SparePart = () => {
                 <Button
                   variant="danger"
                   onClick={() => handleDelete(sparePart._id)}
-                  className="ml-2"
+                  className="mx-2"
                 >
                   Delete
                 </Button>

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Table, Button, Modal, Form, Alert } from 'react-bootstrap';
-
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PDFFormSOMekanik from '../components/PDFFormSOMekanik';
 const MekanikPage = () => {
     const [mekaniks, setMekaniks] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [currentMekanik, setCurrentMekanik] = useState(null);
-    const [formData, setFormData] = useState({no: '', tanggal: '', noForm: '', noSO: '', mekanik: '', noPlat: '', ekspedisi: '', namaMekanik: '', noID: '', perbaikan: '', borongan: '' });
+    const [formData, setFormData] = useState(
+        {tanggal: '', noForm: '', noSO: '', mekanik: '', noPlat: '', ekspedisi: '', namaMitra: '', noID: '', perbaikan: '', borong: '' }
+    );
     const [error, setError] = useState('');
     const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
@@ -38,7 +41,7 @@ const MekanikPage = () => {
                 await axios.post(`${apiUrl}/api/mekanik`, formData);
             }
             setShowModal(false);
-            setFormData({ nama: '', type: '', no: '' });
+            setFormData({tanggal: '', noForm: '', noSO: '', mekanik: '', noPlat: '', ekspedisi: '', namaMitra: '', noID: '', perbaikan: '', borong: '' });
             setCurrentMekanik(null);
             const response = await axios.get(`${apiUrl}api/mekanik`);
             setMekaniks(response.data);
@@ -65,6 +68,16 @@ const MekanikPage = () => {
         }
     };
 
+    function formatDate(isoDateString) {
+        const date = new Date(isoDateString);  // Convert the ISO string to a Date object
+    
+        const day = String(date.getDate()).padStart(2, '0');      // Get the day and add leading zero if needed
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Get the month (0-indexed) and add leading zero
+        const year = date.getFullYear();                          // Get the full year
+        
+        return `${day}/${month}/${year}`;  // Return in dd/mm/yyyy format
+    }
+
     return (
         <Container className="mt-4">
             <h2>Mekanik</h2>
@@ -89,14 +102,29 @@ const MekanikPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {mekaniks.map(mekanik => (
+                    {mekaniks.map((mekanik, index) => (
                         <tr key={mekanik._id}>
-                            <td>{mekanik.nama}</td>
-                            <td>{mekanik.type}</td>
-                            <td>{mekanik.no}</td>
+                            <td>{index + 1}</td>
+                            <td>{formatDate(mekanik.tanggal)}</td>
+                            <td>{mekanik.noForm}</td>
+                            <td>{mekanik.noSO}</td>
+                            <td>{mekanik.mekanik}</td>
+                            <td>{mekanik.noPlat}</td>
+                            <td>{mekanik.ekspedisi}</td>
+                            <td>{mekanik.namaMitra}</td>
+                            <td>{mekanik.noID}</td>
+                            <td>{mekanik.perbaikan}</td>
+                            <td>{mekanik.borong}</td>
                             <td>
                                 <Button variant="warning" onClick={() => handleEdit(mekanik)}>Edit</Button>
-                                <Button variant="danger" onClick={() => handleDelete(mekanik._id)} className="ml-2">Delete</Button>
+                                <Button variant="danger" onClick={() => handleDelete(mekanik._id)} className="mx-2">Delete</Button>
+                                <PDFDownloadLink document={<PDFFormSOMekanik data={mekaniks[index]} />} fileName="Form PO Mekanik">
+                                    <Button
+                                    variant="danger"
+                                    >
+                                    PDF
+                                    </Button>
+                                </PDFDownloadLink>
                             </td>
                         </tr>
                     ))}
@@ -110,16 +138,6 @@ const MekanikPage = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="formNo">
-                            <Form.Label>No</Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="no"
-                                value={formData.no}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
                         <Form.Group controlId="formTanggal">
                             <Form.Label>Tanggal</Form.Label>
                             <Form.Control
@@ -180,28 +198,18 @@ const MekanikPage = () => {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group controlId="formNoForm">
-                            <Form.Label>No. Form</Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="no"
-                                value={formData.no}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
                         <Form.Group controlId="formNamaMekanik">
                             <Form.Label>Nama Mekanik</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="namaMekanik"
-                                value={formData.namaMekanik}
+                                name="namaMitra"
+                                value={formData.namaMitra}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
                         <Form.Group controlId="formNoID">
-                            <Form.Label>No. Form</Form.Label>
+                            <Form.Label>No. ID</Form.Label>
                             <Form.Control
                                 type="number"
                                 name="noID"
@@ -220,12 +228,12 @@ const MekanikPage = () => {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group controlId="formBorongan">
+                        <Form.Group controlId="formBorongan" className='mb-3'>
                             <Form.Label>Borongan</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="borongan"
-                                value={formData.borongan}
+                                name="borong"
+                                value={formData.borong}
                                 onChange={handleChange}
                                 required
                             />

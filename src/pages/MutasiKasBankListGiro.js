@@ -105,7 +105,7 @@ const MutasiKasBankListGiro = () => {
               <td>{entry.debit}</td>
               <td>
                 <Button variant="warning" onClick={() => handleEdit(entry)}>Edit</Button>
-                <Button variant="danger" onClick={() => handleDelete(entry._id)} className="ml-2">Delete</Button>
+                <Button variant="danger" onClick={() => handleDelete(entry._id)} className="mx-2">Delete</Button>
               </td>
             </tr>
           ))}
