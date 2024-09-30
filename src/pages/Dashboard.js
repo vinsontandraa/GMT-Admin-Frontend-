@@ -27,7 +27,7 @@ const Dashboard = () => {
         fetchData();
     }, []);
 
-    const isManager = role === 'manager';
+    const isManager = role === 'admin3';
 
     return (
         <Container fluid className="mt-4 w-75">

@@ -114,7 +114,7 @@ const FormPermintaanBarangTasklist = ({ role }) => {
 
     return (
         <Container>
-            <h2>{role === 'admin' ? 'Admin Task List' : 'Supervisor Task List'}</h2>
+            <h2>{role === 'admin1' ? 'Admin Task List' : 'Supervisor Task List'}</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">{success}</Alert>}
             <Table striped bordered hover>
@@ -171,7 +171,7 @@ const FormPermintaanBarangTasklist = ({ role }) => {
             {currentTask && (
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{role === 'supervisor' ? 'Approve/Reject Task' : 'Task Details'}</Modal.Title>
+                        <Modal.Title>{role === 'admin3' ? 'Approve/Reject Task' : 'Task Details'}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -183,12 +183,12 @@ const FormPermintaanBarangTasklist = ({ role }) => {
                                         name={key}
                                         value={currentTask[key] || formData[key]}
                                         onChange={handleChange}
-                                        disabled={role === 'admin' ? true : false}
-                                        required={role === 'supervisor' ? false : true}
+                                        disabled={role === 'admin1' ? true : false}
+                                        required={role === 'admin3' ? false : true}
                                     />
                                 </Form.Group>
                             ))}
-                            {role === 'supervisor' && (
+                            {role === 'admin3' && (
                                 <>
                                     <Button disabled={currentTask.approvalStatus === 'approved' || currentTask.approvalStatus === 'rejected'} variant="success" onClick={handleApprove}>Approve</Button>
                                     <Button disabled={currentTask.approvalStatus === 'approved' || currentTask.approvalStatus === 'rejected'}  variant="danger" onClick={handleReject}>Reject</Button>
