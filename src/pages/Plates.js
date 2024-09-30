@@ -85,7 +85,7 @@ const Plates = () => {
                             <td>{plate.noPlat}</td>
                             <td>
                                 <Button variant="warning" onClick={() => handleEdit(plate)}>Edit</Button>
-                                <Button variant="danger" onClick={() => handleDelete(plate._id)} className="ml-2">Delete</Button>
+                                <Button variant="danger" onClick={() => handleDelete(plate._id)} className="mx-2">Delete</Button>
                             </td>
                         </tr>
                     ))}

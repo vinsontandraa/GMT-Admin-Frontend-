@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const FormIOPengambilanDariStok = () => (
+const PDFFormIOPengambilanDariStok = () => (
     <Document>
         <Page size="A4" style={styles.page}>
             <View style={styles.header}>
@@ -115,4 +115,4 @@ const FormIOPengambilanDariStok = () => (
     </Document>
 );
 
-export default FormIOPengambilanDariStok;
+export default PDFFormIOPengambilanDariStok;

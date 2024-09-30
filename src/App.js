@@ -19,7 +19,8 @@ import SparePartPO from "./pages/SparePartPO";
 import FormPermintaanBarangTasklist from './pages/FormPermintaanBarangTasklist';
 import MekanikPage from "./pages/Mekanik";
 import FormPOList from './pages/FormPOList';
-import Sparepart from './pages/Sparepart';
+import LakalantasPage from "./pages/Lakalantas";
+import Sparepart from './pages/SparePart';
 
 const App = () => (
   <Router>
@@ -45,6 +46,7 @@ const App = () => (
       <Route path="/task-list/admin" element={<FormPermintaanBarangTasklist />} />
       <Route path="/mekanik" element={<MekanikPage />} />
       <Route path="/form-po" element={<FormPOList />} />
+      <Route path="/lakalantas" element={<LakalantasPage />} />
       <Route path="/sparepart" element={<Sparepart />} />
 
     </Routes>

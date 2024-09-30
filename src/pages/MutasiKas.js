@@ -196,7 +196,7 @@ const MutasiKasBank = () => {
                 <Button
                   variant="danger"
                   onClick={() => handleDelete(entry._id)}
-                  className="ml-2"
+                  className="mx-2"
                 >
                   Delete
                 </Button>
