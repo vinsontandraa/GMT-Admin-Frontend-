@@ -6,6 +6,8 @@ import PDFFormPOList from "../components/PDFFormPOList";
 
 const FormPOList = () => {
   const [formPOs, setFormPOs] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const apiUrl = 'https://gmt-admin-backend-production.up.railway.app';
 
   useEffect(() => {
@@ -21,6 +23,28 @@ const FormPOList = () => {
 
     fetchData();
   }, []);
+
+    // Function to handle RO generation
+    const handleGenerateRO = async (po) => {
+      try {
+        const response = await axios.post(`${apiUrl}/api/form-ro/generateFromPO`, {
+          noPO: po.noPO,
+          tanggal: po.tanggal,
+          supplier: po.supplier,
+          merek: po.merek,
+          produk: po.produk,
+          tipe: po.tipe,
+          satuan: po.satuan,
+          qty: po.qty,
+          upload: po.upload,
+        });
+        setSuccessMessage('RO successfully generated');
+        setErrorMessage('');
+      } catch (err) {
+        setErrorMessage('Failed to generate RO');
+        setSuccessMessage('');
+      }
+    };
 
   return (
     <div className="container">
@@ -71,6 +95,11 @@ const FormPOList = () => {
               <td>{po.merek}</td>
               <td>{po.qtyKetersediaan}</td>
               <td>{po.keterangan}</td>
+              <td>
+                <Button variant="primary" onClick={() => handleGenerateRO(po)}>
+                  Generate RO
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -15,7 +15,7 @@ const LakalantasPage = () => {
     useEffect(() => {
         const fetchLakalantas = async () => {
             try {
-                const response = await axios.get(`${apiUrl}/api/lakalantas`);
+                const response = await axios.get(`${apiUrl}/api/lakalantaas`);
                 console.log('test ' + response.data);
                 setLakalantass(response.data);
             } catch (err) {
@@ -36,15 +36,15 @@ const LakalantasPage = () => {
         try {
             if (currentLakalantas) {
                 // Update
-                await axios.put(`${apiUrl}/api/lakalantas/${currentLakalantas._id}`, formData);
+                await axios.put(`${apiUrl}/api/lakalantaas/${currentLakalantas._id}`, formData);
             } else {
                 // Create
-                await axios.post(`${apiUrl}/api/lakalantas`, formData);
+                await axios.post(`${apiUrl}/api/lakalantaas`, formData);
             }
             setShowModal(false);
             setFormData({tanggalKejadian: '', noLaka: '', noPlat: '', ekspedisi: '', namaMitra: '', noID: '', lokasi: '', kronologi: '', penyelesaian: '', rpRincianBiayaLaka: '', keteranganRincianBiayaLaka: '', noRefRincianBiayaLaka: '', tanggalRincianBiayaLaka: '', rpOlehSupir: '', rpOlehPerusahaan: '', upload: '', tglPerbaikanYgDibutuhkan: '', noReportPerbaikanYgDibutuhkan: '', tglSelesai: '' });
             setCurrentLakalantas(null);
-            const response = await axios.get(`${apiUrl}api/lakalantas`);
+            const response = await axios.get(`${apiUrl}api/lakalantaas`);
             setLakalantass(response.data);
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -61,7 +61,7 @@ const LakalantasPage = () => {
         if (window.confirm('Are you sure you want to delete this lakalantas?')) {
             try {
                 await axios.delete(`${apiUrl}/api/lakalantas`);
-                const response = await axios.get(`${apiUrl}/api/lakalantas`);
+                const response = await axios.get(`${apiUrl}/api/lakalantaas`);
                 setLakalantass(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');

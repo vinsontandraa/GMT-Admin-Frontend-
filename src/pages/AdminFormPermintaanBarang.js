@@ -111,7 +111,7 @@ const AdminFormPermintaanBarang = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${apiUrl}/api/FormPermintaanBarangs`, formData);
+            await axios.post(`${apiUrl}/api/formPermintaanBarangs`, formData);
             setSuccess('Form Permintaan Barang created successfully');
             setFormData({
                 tanggal: '',

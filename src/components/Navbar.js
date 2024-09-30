@@ -40,74 +40,66 @@ const NavigationBar = () => {
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
                   </Nav.Link>
-                  <NavDropdown
-                    title="Kas Harian Global"
-                    id="kas-harian-global-dropdown"
-                  >
-                    <NavDropdown.Item as={Link} to="/global-cash-daily">
-                      Kas Harian Global
-                    </NavDropdown.Item>
-                  </NavDropdown>
-
-                  <NavDropdown title="Mutasi Kas" id="mutasi-kas-dropdown">
-                    <NavDropdown.Item as={Link} to="/mutasiKas">
-                      Mutasi Kas
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/mutasi-kas-bank-piutang">
-                      Mutasi Kas Bank Piutang
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/mutasi-kas-bank-giro">
-                      Mutasi Kas Bank Giro
-                    </NavDropdown.Item>
-                  </NavDropdown>
-
-                  <NavDropdown title="Berkas" id="data-kendaraan-dropdown">
-                    <NavDropdown.Item as={Link} to="/vehicle-data">
-                      Data Kendaraan
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
-                      Data Surat Kendaraan
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
-                      Supir
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
-                      Operator
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
-                      Anggota
-                    </NavDropdown.Item>
-                  </NavDropdown>
-
-                  <>
+                  {role === "admin1" && (
+                    <NavDropdown
+                      title="Kas Harian Global"
+                      id="kas-harian-global-dropdown"
+                    >
+                      <NavDropdown.Item as={Link} to="/global-cash-daily">
+                        Kas Harian Global
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  )}
+                  {role === "admin2" && <></>}
+                  {role === "admin3" && (
+                    <NavDropdown title="Berkas" id="data-kendaraan-dropdown">
+                      <NavDropdown.Item as={Link} to="/vehicle-data">
+                        Data Kendaraan
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                        Data Surat Kendaraan
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                        Supir
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                        Operator
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/data-surat-kendaraan">
+                        Anggota
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  )}
+                  {role === "admin5" && (
+                    <NavDropdown title="Bank" id="mutasi-kas-dropdown">
+                      <NavDropdown.Item as={Link} to="/mutasiKas">
+                        Mutasi Kas
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/mutasi-kas-bank-piutang">
+                        Mutasi Kas Bank Piutang
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/mutasi-kas-bank-giro">
+                        Mutasi Kas Bank Giro
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  )}
+                  {role === "admin6" && (
                     <NavDropdown title="Sparepart" id="sparepart-dropdown">
-
-
                       <NavDropdown.Item as={Link} to="/admin-sparepart">
                         Form Permintaan Barang
                       </NavDropdown.Item>
-                      <>
-                        <NavDropdown.Item as={Link} to="/task-list/supervisor">
-                          Sparepart spv Task List
-                        </NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/task-list/admin">
-                          Sparepart operator Task List
-                        </NavDropdown.Item>
-                      </>
-                      <NavDropdown.Item as={Link} to="/form-po">
-                        Form PO Pembelian Barang
+
+                      <NavDropdown.Item as={Link} to="/task-list/supervisor">
+                        Sparepart spv Task List
                       </NavDropdown.Item>
-
                     </NavDropdown>
-                  </>
-
-
-
-
-
+                  )}
                 </div>
                 <div>
-                  <Nav.Link onClick={handleLogout} className="border-start px-4">
+                  <Nav.Link
+                    onClick={handleLogout}
+                    className="border-start px-4"
+                  >
                     Logout
                   </Nav.Link>
                 </div>

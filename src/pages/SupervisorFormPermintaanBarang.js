@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Table, Button, Modal, Form, Alert } from 'react-bootstrap';
+import { jwtDecode } from 'jwt-decode';
 
 const SupervisorFormPermintaanBarang = () => {
     const [tasks, setTasks] = useState([]);
@@ -13,8 +14,12 @@ const SupervisorFormPermintaanBarang = () => {
         tanggalDitinjau: '',
         mekanik: '',
         supplier: '',
-        status: ''
+        approvalStatus: '',
+        firstApprovedBy:'',
+        secondApprovedBy:''
     });
+    const [temp, setTemp] = useState('');
+
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [authenticated, setAuthenticated] = useState(false);
@@ -33,7 +38,11 @@ const SupervisorFormPermintaanBarang = () => {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
             }
         };
+
+
+
         fetchTasks();
+
     }, []);
 
     const handleShow = (task) => {
@@ -44,7 +53,7 @@ const SupervisorFormPermintaanBarang = () => {
             tanggalDitinjau: task.tanggalDitinjau || '',
             mekanik: task.mekanik || '',
             supplier: task.supplier || '',
-            status: task.status || 'pending'
+            approvalStatus: task.approvalStatus || 'pending'
         });
         setShowModal(true);
     };
@@ -58,7 +67,7 @@ const SupervisorFormPermintaanBarang = () => {
             tanggalDitinjau: '',
             mekanik: '',
             supplier: '',
-            status: ''
+            approvalStatus: ''
         });
     };
 
@@ -93,26 +102,42 @@ const SupervisorFormPermintaanBarang = () => {
 
     const handleApprove = async (type) => {
         try {
-            const username = formData.approverUsername; // Get the approver username from formData
-            await axios.put(`${apiUrl}/api/FormPermintaanBarangs/${currentTask._id}`, {
-                username,
-                approvalType: type // Specify whether it's the first or second approval
-            });
-            setSuccess('Task approved successfully');
-            handleClose();
-            // Update the tasks state accordingly
+            const token = localStorage.getItem('token'); // Replace 'token' with your actual local storage key
+            if (token) {
+                const decodedToken = jwtDecode(token);
+    
+                let username = decodedToken.username; // Get the approver username from the token
+                
+                // Update formData based on the type of approval
+                if (type === 'first') {
+                    setFormData((prevData) => ({ ...prevData, firstApprovedBy: username }));
+                } else {
+                    setFormData((prevData) => ({ ...prevData, secondApprovedBy: username }));
+                }
+    
+                // Send approval request with the correct username and approval type
+                await axios.put(`${apiUrl}/api/FormPermintaanBarangs/${currentTask._id}`, {
+                    username: username,
+                    approvalType: type // Specify whether it's the first or second approval
+                });
+    
+                setSuccess('Task approved successfully');
+                handleClose();
+                // Update the tasks state accordingly
+            }
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
             setSuccess('');
         }
     };
 
+
     const handleReject = async () => {
         try {
-            await axios.put(`${apiUrl}/api/FormPermintaanBarangs/${currentTask._id}`, { status: 'rejected' });
+            await axios.put(`${apiUrl}/api/FormPermintaanBarangs/${currentTask._id}`, { approvalStatus: 'rejected' });
             setSuccess('Task rejected successfully');
             handleClose();
-            setTasks(tasks.map(task => task._id === currentTask._id ? { ...task, status: 'rejected' } : task));
+            setTasks(tasks.map(task => task._id === currentTask._id ? { ...task, approvalStatus: 'rejected' } : task));
             setError('');
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -169,7 +194,7 @@ const SupervisorFormPermintaanBarang = () => {
                             <td>{task.tipe}</td>
                             <td>{task.satuan}</td>
                             <td>{task.qty}</td>
-                            <td>{task.status}</td>
+                            <td>{task.approvalStatus}</td>
                             <td>
                                 <Button variant="info" onClick={() => handleShow(task)}>Details</Button>
                             </td>
@@ -251,8 +276,10 @@ const SupervisorFormPermintaanBarang = () => {
                                         )}
                                     </Form.Group>
                                 ))}
-                               <Button disabled={currentTask.status === 'approved' || currentTask.status === 'rejected'} variant="success" onClick={() => handleApprove('first')}>Approve</Button>
-                               <Button disabled={currentTask.status === 'approved' || currentTask.status === 'rejected'} variant="danger" onClick={handleReject}>Reject</Button>
+                               <Button disabled={currentTask.approvalStatus === 'approved' || currentTask.approvalStatus === 'rejected'} variant="success" onClick={() => handleApprove('first')}>Approve</Button>
+                               <Button disabled={currentTask.approvalStatus === 'approved' || currentTask.approvalStatus === 'rejected'} variant="success" onClick={() => handleApprove('second')}>Approve</Button>
+
+                               <Button disabled={currentTask.approvalStatus === 'approved' || currentTask.approvalStatus === 'rejected'} variant="danger" onClick={handleReject}>Reject</Button>
                             </Form>
                         )}
                     </Modal.Body>

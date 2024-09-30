@@ -21,6 +21,7 @@ import MekanikPage from "./pages/Mekanik";
 import FormPOList from './pages/FormPOList';
 import LakalantasPage from "./pages/Lakalantas";
 import Sparepart from './pages/SparePart';
+import FormROList from './pages/FormROList';
 
 const App = () => (
   <Router>
@@ -48,6 +49,7 @@ const App = () => (
       <Route path="/form-po" element={<FormPOList />} />
       <Route path="/lakalantas" element={<LakalantasPage />} />
       <Route path="/sparepart" element={<Sparepart />} />
+      <Route path="/form-ro" element={<FormROList />} />
 
     </Routes>
   </Router>
