@@ -15,14 +15,12 @@ const LakalantasPage = () => {
     useEffect(() => {
         const fetchLakalantas = async () => {
             try {
-                const response = await axios.get(`${apiUrl}/api/lakalantaas`);
-                console.log('test ' + response.data);
+                const response = await axios.get(`${apiUrl}/api/lakalantas`);
                 setLakalantass(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
             }
         };
-        console.log('test1 ');
         fetchLakalantas();
     }, []);
 
@@ -36,15 +34,15 @@ const LakalantasPage = () => {
         try {
             if (currentLakalantas) {
                 // Update
-                await axios.put(`${apiUrl}/api/lakalantaas/${currentLakalantas._id}`, formData);
+                await axios.put(`${apiUrl}/api/lakalantas/${currentLakalantas._id}`, formData);
             } else {
                 // Create
-                await axios.post(`${apiUrl}/api/lakalantaas`, formData);
+                await axios.post(`${apiUrl}/api/lakalantas`, formData);
             }
             setShowModal(false);
             setFormData({tanggalKejadian: '', noLaka: '', noPlat: '', ekspedisi: '', namaMitra: '', noID: '', lokasi: '', kronologi: '', penyelesaian: '', rpRincianBiayaLaka: '', keteranganRincianBiayaLaka: '', noRefRincianBiayaLaka: '', tanggalRincianBiayaLaka: '', rpOlehSupir: '', rpOlehPerusahaan: '', upload: '', tglPerbaikanYgDibutuhkan: '', noReportPerbaikanYgDibutuhkan: '', tglSelesai: '' });
             setCurrentLakalantas(null);
-            const response = await axios.get(`${apiUrl}api/lakalantaas`);
+            const response = await axios.get(`${apiUrl}api/lakalantas`);
             setLakalantass(response.data);
         } catch (err) {
             setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -61,7 +59,7 @@ const LakalantasPage = () => {
         if (window.confirm('Are you sure you want to delete this lakalantas?')) {
             try {
                 await axios.delete(`${apiUrl}/api/lakalantas`);
-                const response = await axios.get(`${apiUrl}/api/lakalantaas`);
+                const response = await axios.get(`${apiUrl}/api/lakalantas`);
                 setLakalantass(response.data);
             } catch (err) {
                 setError(err.response?.data?.error || 'An unexpected error occurred');
@@ -80,7 +78,7 @@ const LakalantasPage = () => {
     }
 
     return (
-        <Container className="mt-4">
+        <Container className="mt-4" style={{ overflowX: "auto" }}>
             <h2>Lakalantas</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Button variant="primary" onClick={() => setShowModal(true)} className="mb-3">
@@ -102,8 +100,10 @@ const LakalantasPage = () => {
                         <th colSpan={4}>Rincian Biaya Laka</th>
                         <th>oleh Supir</th>
                         <th>oleh Perusahaan</th>
+                        <th rowSpan={2}>Upload</th>
                         <th colSpan={2}>Perbaikan Yang Dibutuhkan</th>
                         <th rowSpan={2}>Tgl Selesai</th>
+                        <th rowSpan={2}></th>
                     </tr>
                     <tr>
                         <th>Rp.</th>
@@ -132,14 +132,14 @@ const LakalantasPage = () => {
                             <td>{lakalantas.rpRincianBiayaLaka}</td>
                             <td>{lakalantas.keteranganRincianBiayaLaka}</td>
                             <td>{lakalantas.noRefRincianBiayaLaka}</td>
-                            <td>{lakalantas.tanggalRincianBiayaLaka}</td>
+                            <td>{formatDate(lakalantas.tanggalRincianBiayaLaka)}</td>
                             <td>{lakalantas.rpOlehSupir}</td>
                             <td>{lakalantas.rpOlehPerusahaan}</td>
                             <td>{lakalantas.upload}</td>
                             <td>{formatDate(lakalantas.tglPerbaikanYgDibutuhkan)}</td>
                             <td>{lakalantas.noReportPerbaikanYgDibutuhkan}</td>
                             <td>{formatDate(lakalantas.tglSelesai)}</td>
-                            <td>
+                            <td className='d-flex justify-content-center align-items-center'>
                                 <Button variant="warning" onClick={() => handleEdit(lakalantas)}>Edit</Button>
                                 <Button variant="danger" onClick={() => handleDelete(lakalantas._id)} className="mx-2">Delete</Button>
                             </td>
@@ -325,12 +325,12 @@ const LakalantasPage = () => {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group controlId="formNoReportlPerbaikanYgDibutuhkan" className='mb-3'>
+                        <Form.Group controlId="formNoReportPerbaikanYgDibutuhkan" className='mb-3'>
                             <Form.Label>No Report Perbaikan Yang Dibutuhkan</Form.Label>
                             <Form.Control
                                 type="number"
-                                name="noReportlPerbaikanYgDibutuhkan"
-                                value={formData.noReportlPerbaikanYgDibutuhkan}
+                                name="noReportPerbaikanYgDibutuhkan"
+                                value={formData.noReportPerbaikanYgDibutuhkan}
                                 onChange={handleChange}
                                 required
                             />
